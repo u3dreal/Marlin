@@ -99,7 +99,7 @@
   #endif
 #else
   #ifndef Z_STOP_PIN
-    #define Z_STOP_PIN                      PC13
+    #define Z_STOP_PIN                      PE3
   #endif
 #endif
 //
@@ -187,7 +187,45 @@
 //#define POWER_LM393_PIN                   PE0   // +V for the LM393 comparator, configured as output high
 
 #if ENABLED(TFT_TRONXY_X5SA)
-  #error "TFT_TRONXY_X5SA is not yet supported."
+
+  #define TOUCH_CS_PIN                      PD11   // SPI1_NSS
+  #define TOUCH_SCK_PIN                     PB13   // SPI1_SCK
+  #define TOUCH_MISO_PIN                    PB14   // SPI1_MISO
+  #define TOUCH_MOSI_PIN                    PB15   // SPI1_MOSI
+
+  #define TFT_RESET_PIN                     PB12
+  #define TFT_BACKLIGHT_PIN                 PG8
+
+  #define FSMC_CS_PIN                       PG12   // NE4
+  #define FSMC_RS_PIN                       PG2  // A0
+
+  #define TFT_CS_PIN                 FSMC_CS_PIN
+  #define TFT_RS_PIN                 FSMC_RS_PIN
+
+  #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
+  #define FSMC_DMA_DEV                      DMA2
+  #define FSMC_DMA_CHANNEL                  DMA_CH5 
+
+  // XPT2046 Touch Screen calibration
+  #if ANY(TFT_COLOR_UI, TFT_LVGL_UI, TFT_CLASSIC_UI)
+    #ifndef TOUCH_CALIBRATION_X
+      #define TOUCH_CALIBRATION_X           -17181
+    #endif
+    #ifndef TOUCH_CALIBRATION_Y
+      #define TOUCH_CALIBRATION_Y            11434
+    #endif
+    #ifndef TOUCH_OFFSET_X
+      #define TOUCH_OFFSET_X                   501
+    #endif
+    #ifndef TOUCH_OFFSET_Y
+      #define TOUCH_OFFSET_Y                    -9
+    #endif
+  #endif
+  
+  #define AT24CXX_SCL                         PB8
+  #define AT24CXX_SDA                         PB9
+  #define AT24CXX_WP                          PB7
+
 #endif
 
 #if 0
