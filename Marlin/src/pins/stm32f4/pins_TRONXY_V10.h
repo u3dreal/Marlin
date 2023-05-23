@@ -69,7 +69,7 @@
 //
 // SPI Flash
 //
-//#define SPI_FLASH
+#define SPI_FLASH
 #if ENABLED(SPI_FLASH)
   #define SPI_FLASH_SIZE                0x200000  // 2MB
   #define SPI_FLASH_CS_PIN                  PG15  // SPI2
@@ -77,6 +77,12 @@
   #define SPI_FLASH_MISO_PIN                PB4
   #define SPI_FLASH_MOSI_PIN                PB5
 #endif
+
+// SPI 2
+//#define W25QXX_CS_PIN                       PG15
+//#define W25QXX_MOSI_PIN                     PB5
+//#define W25QXX_MISO_PIN                     PB4
+//#define W25QXX_SCK_PIN                      PB3
 
 //
 // Limit Switches
@@ -188,11 +194,6 @@
 
 #if ENABLED(TFT_TRONXY_X5SA)
 
-  #define TOUCH_CS_PIN                      PD11   // SPI1_NSS
-  #define TOUCH_SCK_PIN                     PB13   // SPI1_SCK
-  #define TOUCH_MISO_PIN                    PB14   // SPI1_MISO
-  #define TOUCH_MOSI_PIN                    PB15   // SPI1_MOSI
-
   #define TFT_RESET_PIN                     PB12
   #define TFT_BACKLIGHT_PIN                 PG8
 
@@ -207,6 +208,12 @@
   #define FSMC_DMA_CHANNEL                  DMA_CH5 
 
   // XPT2046 Touch Screen calibration
+  #define TOUCH_CS_PIN                      PD11   // SPI1_NSS
+  #define TOUCH_SCK_PIN                     PB13   // SPI1_SCK
+  #define TOUCH_MISO_PIN                    PB14   // SPI1_MISO
+  #define TOUCH_MOSI_PIN                    PB15   // SPI1_MOSI
+
+
   #if ANY(TFT_COLOR_UI, TFT_LVGL_UI, TFT_CLASSIC_UI)
     #ifndef TOUCH_CALIBRATION_X
       #define TOUCH_CALIBRATION_X           -17181
@@ -222,69 +229,11 @@
     #endif
   #endif
   
-  #define AT24CXX_SCL                         PB8
-  #define AT24CXX_SDA                         PB9
-  #define AT24CXX_WP                          PB7
-
 #endif
 
-#if 0
-
-//
-// TFT with FSMC interface
-//
-#if HAS_FSMC_TFT
-  #define TFT_RESET_PIN                     PB12
-  #define TFT_BACKLIGHT_PIN                 PG8
-
-  #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
-
-  #define TFT_CS_PIN                        PG12
-  #define TFT_RS_PIN                        PG2
-
-  //#define TFT_WIDTH                        480
-  //#define TFT_HEIGHT                       320
-  //#define TFT_PIXEL_OFFSET_X                48
-  //#define TFT_PIXEL_OFFSET_Y                32
-  //#define TFT_DRIVER                   ILI9488
-  //#define TFT_BUFFER_SIZE                14400
-
-  #if NEED_TOUCH_PINS
-    #define TOUCH_CS_PIN                    PD11  // SPI1_NSS
-    #define TOUCH_SCK_PIN                   PB13  // SPI1_SCK
-    #define TOUCH_MISO_PIN                  PB14  // SPI1_MISO
-    #define TOUCH_MOSI_PIN                  PB15  // SPI1_MOSI
-  #endif
-
-  #if (LCD_CHIP_INDEX == 1 && (TRONXY_UI == 1 || TRONXY_UI == 2)) || LCD_CHIP_INDEX == 3
-    #define TOUCH_CALIBRATION_X           -17181
-    #define TOUCH_CALIBRATION_Y            11434
-    #define TOUCH_OFFSET_X                   501
-    #define TOUCH_OFFSET_Y                    -9
-  #elif LCD_CHIP_INDEX == 1 && TRONXY_UI == 4
-    #define TOUCH_CALIBRATION_X            11166
-    #define TOUCH_CALIBRATION_Y            17162
-    #define TOUCH_OFFSET_X                   -10
-    #define TOUCH_OFFSET_Y                   -16
-  #elif LCD_CHIP_INDEX == 4 && TRONXY_UI == 3
-    //#define TOUCH_CALIBRATION_X           8781
-    //#define TOUCH_CALIBRATION_Y          11773
-    //#define TOUCH_OFFSET_X                 -17
-    //#define TOUCH_OFFSET_Y                 -16
-    // Upside-down
-    #define TOUCH_CALIBRATION_X            -8553
-    #define TOUCH_CALIBRATION_Y           -11667
-    #define TOUCH_OFFSET_X                   253
-    #define TOUCH_OFFSET_Y                   331
-  #elif LCD_CHIP_INDEX == 2
-    #define TOUCH_CALIBRATION_X            17184
-    #define TOUCH_CALIBRATION_Y            10604
-    #define TOUCH_OFFSET_X                   -31
-    #define TOUCH_OFFSET_Y                   -29
-  #endif
-#endif
-
-#endif
+#define AT24CXX_SCL                         PB8
+#define AT24CXX_SDA                         PB9
+#define AT24CXX_WP                          PB7
 
 //
 // SD Card
@@ -293,3 +242,12 @@
 #define SD_DETECT_PIN                       -1    // PF0, but not connected
 #define SDIO_CLOCK                       4500000
 #define SDIO_READ_RETRIES                     16
+
+#define SDIO_D0_PIN                         PC8
+#define SDIO_D1_PIN                         PC9
+#define SDIO_D2_PIN                         PC10
+#define SDIO_D3_PIN                         PC11
+#define SDIO_CK_PIN                         PC12
+#define SDIO_CMD_PIN                        PD2
+
+#define SPEAKER
