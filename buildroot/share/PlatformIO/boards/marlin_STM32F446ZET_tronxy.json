@@ -7,7 +7,7 @@
     "variant": "MARLIN_F446Zx_TRONXY"
   },
   "connectivity": [
-    "can"
+    "usb"
   ],
   "debug": {
     "jlink_device": "STM32F446ZE",
