@@ -213,7 +213,7 @@
   #define TOUCH_MISO_PIN                    PB14   // SPI1_MISO
   #define TOUCH_MOSI_PIN                    PB15   // SPI1_MOSI
 
-
+  /*
   #if ANY(TFT_COLOR_UI, TFT_LVGL_UI, TFT_CLASSIC_UI)
     #ifndef TOUCH_CALIBRATION_X
       #define TOUCH_CALIBRATION_X           -17181
@@ -228,7 +228,7 @@
       #define TOUCH_OFFSET_Y                    -9
     #endif
   #endif
-  
+  */
 #endif
 
 #define AT24CXX_SCL                         PB8
